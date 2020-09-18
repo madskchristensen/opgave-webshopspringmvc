@@ -40,16 +40,16 @@ public class StudentController{
         return "/student/detail";
     }
 
-    @GetMapping("/courses")
-    public String courses() {
+    @GetMapping("/temp")
+    public String temp() {
 
-        return "courses";
+        return "temp";
     }
 
-    @GetMapping("/students")
+    @GetMapping("/varekatalog")
     public String studentOverview(Model model) {
-        model.addAttribute("students", studentRepository.readAll());
-        return "students";
+        model.addAttribute("varekatalog", studentRepository.readAll());
+        return "varekatalog";
     }
 
     // create student method
