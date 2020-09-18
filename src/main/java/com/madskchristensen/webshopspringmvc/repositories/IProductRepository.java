@@ -4,7 +4,7 @@ import com.madskchristensen.webshopspringmvc.models.Product;
 
 import java.util.List;
 
-public interface IStudentRepository {
+public interface IProductRepository {
     // CRUD operations
     public boolean create(Product student);
 

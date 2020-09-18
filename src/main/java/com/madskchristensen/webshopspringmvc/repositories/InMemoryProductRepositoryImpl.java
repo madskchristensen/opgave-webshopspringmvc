@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class InMemoryStudentRepositoryImpl implements IStudentRepository{
+public class InMemoryProductRepositoryImpl implements IProductRepository {
     private List<Product> inMemoryDatabase;
 
-    public InMemoryStudentRepositoryImpl(){
+    public InMemoryProductRepositoryImpl(){
         this.inMemoryDatabase = new ArrayList<Product>(
                 Arrays.asList(
 /*                        new Student(1, "Nicklas","Frederiksen", new Date(12312), 1234567890),
