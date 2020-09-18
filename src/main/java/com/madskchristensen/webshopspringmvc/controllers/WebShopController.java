@@ -2,7 +2,7 @@ package com.madskchristensen.webshopspringmvc.controllers;
 
 import com.madskchristensen.webshopspringmvc.models.Product;
 import com.madskchristensen.webshopspringmvc.repositories.IProductRepository;
-import com.madskchristensen.webshopspringmvc.repositories.productRepositoryImpl;
+import com.madskchristensen.webshopspringmvc.repositories.ProductRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ public class WebShopController {
 
     public WebShopController() {
         try {
-            productRepository = new productRepositoryImpl();
+            productRepository = new ProductRepositoryImpl();
         } catch(SQLException e) {
             e.printStackTrace();
         }
@@ -98,6 +98,4 @@ public class WebShopController {
 
         return "redirect:/products";
     }
-
-    // edit student method
 }

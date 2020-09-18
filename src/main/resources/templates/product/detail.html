@@ -12,7 +12,7 @@
     <header th:insert="fragments/header.html :: header"> </header>
 
     <br/>
-    <label for="id">ID</label> <input id="id" name="id" th:value="${student.getId()}" type="text" readonly/>
+    <label for="id">ID</label> <input id="id" name="id" th:value="${product.getId()}" type="text" readonly/>
     <label for="name">Navn</label> <input id="name" name="name" th:value="${product.getName()}" type="text" readonly/>
     <label for="price">Pris</label> <input id="price" name="price" th:value="${product.getPrice()}" type="text" readonly/>
     <label for="description">Beskrivelse</label> <input id="description" name="description" th:value="${product.getDescription()}" type="text" readonly/>

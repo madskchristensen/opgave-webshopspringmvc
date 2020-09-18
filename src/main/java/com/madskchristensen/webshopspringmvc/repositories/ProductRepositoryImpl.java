@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class productRepositoryImpl implements IProductRepository {
+public class ProductRepositoryImpl implements IProductRepository {
     private Connection conn;
 
-    public productRepositoryImpl() throws SQLException {
+    public ProductRepositoryImpl() throws SQLException {
         this.conn = DatabaseConnectionManager.getInstance().getDatabaseConnection();
     }
 
@@ -42,15 +42,18 @@ public class productRepositoryImpl implements IProductRepository {
     public Product read(long id) {
         Product productToReturn = new Product();
         try {
-            PreparedStatement getSingleProduct = conn.prepareStatement("SELECT * FROM products WHERE id = ?");
+            PreparedStatement getSingleProduct = conn.prepareStatement("SELECT * FROM product WHERE id = ?");
             getSingleProduct.setLong(1,id);
             ResultSet rs = getSingleProduct.executeQuery();
+
             while(rs.next()){
                 productToReturn = new Product();
                 productToReturn.setId(rs.getLong(1));
                 productToReturn.setName(rs.getString(2));
                 productToReturn.setPrice(rs.getDouble(3));
-
+                productToReturn.setDescription(rs.getString(4));
+                // productToReturn.setCompany(new Company(rs.getInt(5));
+                // productToReturn.setCategory
             }
         }
         catch(SQLException s){
@@ -63,14 +66,17 @@ public class productRepositoryImpl implements IProductRepository {
     public List<Product> readAll() {
         List<Product> allProducts = new ArrayList<Product>();
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT * FROM students");
+            PreparedStatement ps = conn.prepareStatement("SELECT * FROM product");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                Product tempStudent = new Product();
-                tempStudent.setId(rs.getLong(1));
-                tempStudent.setName(rs.getString(2));
-                tempStudent.setPrice(rs.getDouble(3));
-                allProducts.add(tempStudent);
+                Product tempProduct = new Product();
+                tempProduct.setId(rs.getLong(1));
+                tempProduct.setName(rs.getString(2));
+                tempProduct.setPrice(rs.getDouble(3));
+                tempProduct.setDescription(rs.getString(4));
+                // tempProduct.setCompany
+                // tempProduct.setCategory
+                allProducts.add(tempProduct);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,10 +87,13 @@ public class productRepositoryImpl implements IProductRepository {
     @Override
     public boolean update(Product product) {
         try{
-            PreparedStatement ps = conn.prepareStatement("UPDATE students SET name=?, price=? WHERE id=?");
-            ps.setString(1,product.getName());
-            ps.setDouble(2,product.getPrice());
-            ps.setLong(3,product.getId());
+            PreparedStatement ps = conn.prepareStatement("UPDATE product SET name=?, price=?, description=?, company_id=?, category_id=?, WHERE id=?");
+            ps.setString(1, product.getName());
+            ps.setDouble(2, product.getPrice());
+            ps.setLong(3, product.getId());
+            ps.setString(4, product.getDescription());
+            ps.setLong(5, product.getCompany().getId());
+            ps.setLong(6, product.getCategory().getId());
             ps.execute();
 
             return true;
@@ -96,17 +105,17 @@ public class productRepositoryImpl implements IProductRepository {
     }
 
     @Override
-    public boolean delete(long idToDelete) {
+    public boolean delete(long id) {
         try{
             PreparedStatement ps = conn.prepareStatement("DELETE FROM product WHERE id=?");
-            ps.setLong(1,idToDelete);
+            ps.setLong(1, id);
             ps.execute();
-            System.out.println("Student at ID " + idToDelete + " has been deleted");
+            System.out.println("Product at ID " + id + " has been deleted");
 
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Something went wrong Student ID: " + idToDelete);
+            System.out.println("Something went wrong product ID: " + id);
             return false;
         }
     }
