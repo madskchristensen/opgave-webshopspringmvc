@@ -49,7 +49,7 @@ public class StudentController{
     @GetMapping("/varekatalog")
     public String studentOverview(Model model) {
         model.addAttribute("varekatalog", studentRepository.readAll());
-        return "varekatalog";
+        return "products";
     }
 
     // create student method
