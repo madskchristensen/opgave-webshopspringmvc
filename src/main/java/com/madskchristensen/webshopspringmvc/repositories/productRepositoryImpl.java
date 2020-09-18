@@ -21,12 +21,14 @@ public class productRepositoryImpl implements IProductRepository {
     public boolean create(Product product) {
         try {
             PreparedStatement createSingleProduct = conn.prepareStatement("INSERT INTO product " +
-                    "(name, price, description)" +
-                    "VALUES(?, ?, ?)");
+                    "(name, price, description, company_id, category_id)" +
+                    "VALUES(?, ?, ?, ?, ?)");
 
             createSingleProduct.setString(1, product.getName());
             createSingleProduct.setDouble(2, product.getPrice());
             createSingleProduct.setString(3, product.getDescription());
+            createSingleProduct.setLong(4, product.getCompany().getId());
+            createSingleProduct.setLong(5, product.getCategory().getId());
             createSingleProduct.execute();
 
         } catch (SQLException e) {

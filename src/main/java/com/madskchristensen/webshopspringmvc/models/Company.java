@@ -4,12 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Company {
-    private List<Product> list;
+    private long id;
     private String companyDescription;
+    private List<Product> list;
 
-    public Company(List<Product> list, String companyDescription) {
+    public Company(long id, List<Product> list, String companyDescription) {
+        this.id = id;
         this.list = new ArrayList<>();
         this.companyDescription = companyDescription;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public List<Product> getList() {
