@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="fragments/fragments.html :: head">
     <meta charset="UTF-8">
     <title>Rediger Produkt</title>
-    <!-- stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/../css/styles.css">
 </head>
 <body>
 <div class="container">
     <h1>Rediger Produkt</h1>
-    <header th:insert="fragments/header.html :: header"> </header>
+    <header th:insert="fragments/fragments.html :: header"> </header>
 
     <br/>
     <form action="/product/editDo" th:object="${product}" method="post">

@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:insert="fragments/fragments.html :: head">
+<meta charset="UTF-8">
     <title>Student Administration</title>
-    <!-- stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
 <div class="container">
     <h1>Varekatalog</h1>
 
-    <header th:insert="fragments/header.html :: header"> </header>
+    <header th:insert="fragments/fragments.html :: header"></header>
     <br/>
     <a href="/product/create"><button class="btn btn-create w">Create</button></a>
     <br/>

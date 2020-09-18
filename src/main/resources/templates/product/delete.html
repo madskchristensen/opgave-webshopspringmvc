@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="fragments/fragments.html :: head">
     <meta charset="UTF-8">
     <title>Slet produkt</title>
-    <!-- stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/../css/styles.css">
 </head>
 <body>
 <div class="container" >
     <h1>Slet produkt</h1>
-    <header th:insert="fragments/header.html :: header"> </header>
+    <header th:insert="fragments/fragments.html :: header"> </header>
     <!--placeholder action-->
     <h2><strong>Are you sure you want to delete</strong></h2>
     <p><span th:text="${product.getName()}">Navn</span>

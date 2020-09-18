@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="fragments/fragments.html :: head">
     <meta charset="UTF-8">
     <title>Opret produkt</title>
-    <!-- stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/../css/styles.css">
 </head>
 <body>
 <div class="container">
     <h1>Opret nyt produkt</h1>
-    <header th:insert="fragments/header.html :: header"> </header>
+    <header th:insert="fragments/fragments.html :: header"> </header>
 
     <h2>Produktbeskrivelse</h2>
 

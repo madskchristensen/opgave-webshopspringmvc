@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:insert="fragments/fragments.html :: head">
     <meta charset="UTF-8">
     <title>ERROR</title>
-    <!-- stylesheet -->
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
 </head>
 <body>
 <div class="container">
     <h1>ERROR</h1>
 
-    <header th:insert="fragments/header.html :: header"> </header>
+    <header th:insert="fragments/fragments.html :: header"> </header>
 
     <h1>Oops something went wrong!</h1>
     <h3>Our engineers are on it!</h3>
