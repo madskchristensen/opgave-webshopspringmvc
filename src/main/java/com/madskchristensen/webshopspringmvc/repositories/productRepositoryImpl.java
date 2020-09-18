@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentRepositoryImpl implements IStudentRepository {
+public class productRepositoryImpl implements IProductRepository {
     private Connection conn;
 
-    public StudentRepositoryImpl() throws SQLException {
+    public productRepositoryImpl() throws SQLException {
         this.conn = DatabaseConnectionManager.getInstance().getDatabaseConnection();
     }
 

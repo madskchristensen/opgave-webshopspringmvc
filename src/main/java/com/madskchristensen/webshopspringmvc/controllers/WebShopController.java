@@ -1,8 +1,8 @@
 package com.madskchristensen.webshopspringmvc.controllers;
 
 import com.madskchristensen.webshopspringmvc.models.Product;
-import com.madskchristensen.webshopspringmvc.repositories.IStudentRepository;
-import com.madskchristensen.webshopspringmvc.repositories.StudentRepositoryImpl;
+import com.madskchristensen.webshopspringmvc.repositories.IProductRepository;
+import com.madskchristensen.webshopspringmvc.repositories.productRepositoryImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.SQLException;
 
 @Controller
-public class StudentController{
+public class WebShopController {
 
-    private IStudentRepository studentRepository;
+    private IProductRepository studentRepository;
 
-    public StudentController() {
+    public WebShopController() {
         try {
-            studentRepository = new StudentRepositoryImpl();
+            studentRepository = new productRepositoryImpl();
         } catch(SQLException e) {
             e.printStackTrace();
         }
@@ -49,7 +49,7 @@ public class StudentController{
     @GetMapping("/varekatalog")
     public String studentOverview(Model model) {
         model.addAttribute("varekatalog", studentRepository.readAll());
-        return "varekatalog";
+        return "products";
     }
 
     // create student method
