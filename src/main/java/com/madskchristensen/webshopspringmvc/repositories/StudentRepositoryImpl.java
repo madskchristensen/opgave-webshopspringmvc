@@ -13,8 +13,8 @@ import java.util.List;
 public class StudentRepositoryImpl implements IStudentRepository {
     private Connection conn;
 
-    public StudentRepositoryImpl(){
-        this.conn = DatabaseConnectionManager.getDatabaseConnection();
+    public StudentRepositoryImpl() throws SQLException {
+        this.conn = DatabaseConnectionManager.getInstance().getDatabaseConnection();
     }
 
     @Override

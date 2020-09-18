@@ -9,21 +9,31 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DatabaseConnectionManager {
+    private static DatabaseConnectionManager instance;
     private static String user;
     private static String password;
     private static String url;
-    private static Connection conn;
 
-    public static Connection getDatabaseConnection() {
-        if(conn != null) return conn;
+    private DatabaseConnectionManager() {
 
+    }
+
+    public static DatabaseConnectionManager getInstance() {
+        if (instance == null) {
+            instance = new DatabaseConnectionManager();
+        }
+
+        return instance;
+    }
+
+    public Connection getDatabaseConnection() throws SQLException {
         Properties prop = new Properties();
         try {
             FileInputStream propertyFile = new FileInputStream("src/main/resources/application.properties");
             prop.load(propertyFile);
-            user = prop.getProperty("spring.datasource.username");
-            password = prop.getProperty("spring.datasource.password");
-            url = prop.getProperty("spring.datasource.url");
+            this.user = prop.getProperty("spring.datasource.username");
+            this.password = prop.getProperty("spring.datasource.password");
+            this.url = prop.getProperty("spring.datasource.url");
         }
         catch(FileNotFoundException e){
             System.out.println("File could not be found");
@@ -33,13 +43,7 @@ public class DatabaseConnectionManager {
             System.out.println("Property could not be loaded");
             e.printStackTrace();
         }
-        try {
-            conn = DriverManager.getConnection(url, user, password);
-        }
-        catch(SQLException e){
-            System.out.println("Message to the developer");
-            e.printStackTrace();
-        }
-        return conn;
+
+        return DriverManager.getConnection(url,user,password);
     }
 }

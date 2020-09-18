@@ -7,13 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
+
 @Controller
 public class StudentController{
 
     private IStudentRepository studentRepository;
 
     public StudentController() {
-        studentRepository = new StudentRepositoryImpl();
+        try {
+            studentRepository = new StudentRepositoryImpl();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @GetMapping("/")

@@ -11,12 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
 
-/*
-    Klasse med ansvar for at konfigurere Spring Security
-
-    Hovedansvarlig: Michael Fuglø
- */
-
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -53,14 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/").hasAnyRole("SALG, ADMIN")
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/autocamper/**").hasAnyRole("SALG, ADMIN")
-                .antMatchers("/booking/**").hasAnyRole("SALG, ADMIN")
-                .antMatchers("/kunder/**").hasAnyRole("SALG, ADMIN")
-                .antMatchers("/login").permitAll().and()
+                .antMatchers("/").permitAll().and()
                 .formLogin()
-                .loginPage("/login")
                 .permitAll();
     }
 
