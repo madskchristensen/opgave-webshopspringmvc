@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Details</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="/../css/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Student Details</h1>
+    <header th:insert="fragments/header.html :: header"> </header>
+
+    <br/>
+    <label for="id">ID</label> <input id="id" name="id" th:value="${student.getId()}" type="text" readonly/>
+    <label for="firstName">Fornavn</label> <input id="firstName" name="firstName" th:value="${student.getFirstName()}" type="text" readonly/>
+    <label for="lastName">Efternavn</label> <input id="lastName" name="lastName" th:value="${student.getLastName()}" type="text" readonly/>
+    <label for="enrollmentDate">Indskrivelsesdato</label> <input id="enrollmentDate" name="enrollmentDate" th:value="${student.getEnrollmentDate()}" type="text" readonly/>
+    <label for="cpr">CPR</label> <input id="cpr" name="cpr" th:value="${student.getCpr()}" type="text" readonly/>
+
+    <a href="/students"><button class="btn btn-create">Back</button></a>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Student</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" type="text/css" href="/../css/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Create student</h1>
+    <header th:insert="fragments/header.html :: header"> </header>
+
+    <h2>Student Details</h2>
+
+    <form action="/student/createDo" method="post">
+        <label for="firstName">Fornavn</label> <input id="firstName" name="firstName" type="text"/>
+        <label for="lastName">Efternavn</label> <input id="lastName" name="lastName" type="text"/>
+        <label for="enrollmentDate">Indskrivelsesdato</label> <input id="enrollmentDate" name="enrollmentDate" type="text"/>
+        <label for="cpr">CPR</label> <input id="cpr" name="cpr" type="text"/>
+        <input name="submit" type="submit" value="Opret" class="btn btn-create">
+    </form>
+</div>
+</body>
+</html>
