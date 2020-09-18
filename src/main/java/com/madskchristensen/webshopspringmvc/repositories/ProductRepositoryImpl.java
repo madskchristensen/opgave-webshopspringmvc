@@ -44,10 +44,13 @@ public class ProductRepositoryImpl implements IProductRepository {
     @Override
     public Product read(long id) {
         Product productToReturn = new Product();
+
         try {
             PreparedStatement getSingleProduct = conn.prepareStatement("SELECT * FROM product WHERE id = ?");
             getSingleProduct.setLong(1,id);
             ResultSet rs = getSingleProduct.executeQuery();
+
+            rs.next();
 
             productToReturn = new Product();
             productToReturn.setId(rs.getLong(1));
@@ -58,6 +61,7 @@ public class ProductRepositoryImpl implements IProductRepository {
             Company company = new Company();
             long companyID = rs.getLong(5);
             company.setId(RepositoryManager.getInstance().getCompanyRepository().read(companyID).getId());
+            company.setName(RepositoryManager.getInstance().getCompanyRepository().read(companyID).getName());
             company.setCompanyDescription(RepositoryManager.getInstance().getCompanyRepository().read(companyID).getCompanyDescription());
 
             Category category = new Category();

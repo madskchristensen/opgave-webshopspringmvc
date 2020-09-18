@@ -26,7 +26,8 @@ public class CompanyRepositoryImpl implements ICompanyRepository {
 
             while(rs.next()) {
                 company.setId(rs.getLong(1));
-                company.setCompanyDescription(rs.getString(2));
+                company.setName(rs.getString(2));
+                company.setCompanyDescription(rs.getString(3));
             }
 
             return company;

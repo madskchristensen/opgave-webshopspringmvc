@@ -16,6 +16,10 @@
     <label for="name">Navn</label> <input id="name" name="name" th:value="${product.getName()}" type="text" readonly/>
     <label for="price">Pris</label> <input id="price" name="price" th:value="${product.getPrice()}" type="text" readonly/>
     <label for="description">Beskrivelse</label> <input id="description" name="description" th:value="${product.getDescription()}" type="text" readonly/>
+    <label for="category">Kategori</label> <input id="category" name="category" th:value="${product.getCategory().getName()}" type="text" readonly/>
+    <label for="companyname">Producent</label> <input id="companyname" name="companyname" th:value="${product.getCompany().getName()}" type="text" readonly/>
+    <label for="companydescription">Beskrivelse af producent</label> <input id="companydescription" name="companydescription" th:value="${product.getCompany().getCompanyDescription()}" type="text" readonly/>
+
 
     <a href="/products"><button class="btn btn-create">Tilbage</button></a>
 

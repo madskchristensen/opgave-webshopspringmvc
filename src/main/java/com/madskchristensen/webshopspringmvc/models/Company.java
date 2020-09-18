@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Company {
     private long id;
+    private String name;
     private String companyDescription;
     private List<Product> list = new ArrayList<>();
 
@@ -12,9 +13,18 @@ public class Company {
 
     }
 
-    public Company(long id, String companyDescription) {
+    public Company(long id, String name, String companyDescription) {
         this.id = id;
+        this.name = name;
         this.companyDescription = companyDescription;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public long getId() {

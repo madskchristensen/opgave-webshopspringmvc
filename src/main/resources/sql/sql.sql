@@ -21,6 +21,7 @@ CREATE TABLE authorities(
     
 CREATE TABLE company(
 	id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
     description VARCHAR(100) NOT NULL
 	);
     
@@ -59,12 +60,12 @@ VALUES
 ("admin", "ROLE_ADMIN");
 
 INSERT INTO company VALUES
-(DEFAULT,'Pepsi'),
-(DEFAULT,'Meyers'),
-(DEFAULT,'Nestlé'),
-(DEFAULT,'Merrild'),
-(DEFAULT,'Coop'),
-(DEFAULT,'Skipper');
+(DEFAULT,'Pepsi', 'Næsten ligeså god som Cola'),
+(DEFAULT,'Meyers', 'Lækker mad til mange penge'),
+(DEFAULT,'Nestlé', 'Masser af kakao og andre chokolade ting'),
+(DEFAULT,'Merrild', 'Kaffe og andre ikke-koffeinholdige produkter'),
+(DEFAULT,'Coop', 'Discount varer til dagligdagen'),
+(DEFAULT,'Skipper', 'Et firma der laver ting');
     
 INSERT INTO category VALUES
 (DEFAULT,'Drikkevarer'),
