@@ -1,8 +1,8 @@
 package com.madskchristensen.webshopspringmvc.controllers;
 
 import com.madskchristensen.webshopspringmvc.models.Product;
-import com.madskchristensen.webshopspringmvc.repositories.IProductRepository;
-import com.madskchristensen.webshopspringmvc.repositories.ProductRepositoryImpl;
+import com.madskchristensen.webshopspringmvc.repositories.*;
+import com.madskchristensen.webshopspringmvc.util.RepositoryManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +13,15 @@ import java.sql.SQLException;
 public class WebShopController {
 
     private IProductRepository productRepository;
+    private ICompanyRepository companyRepository;
+    private ICategoryRepository categoryRepository;
 
     public WebShopController() {
         try {
-            productRepository = new ProductRepositoryImpl();
+            productRepository = RepositoryManager.getInstance().getProductRepository();
+            companyRepository = RepositoryManager.getInstance().getCompanyRepository();
+            categoryRepository = RepositoryManager.getInstance().getCategoryRepository();
+
         } catch(SQLException e) {
             e.printStackTrace();
         }
@@ -27,6 +32,7 @@ public class WebShopController {
         // Student student = new Student(1,"hejehej","Lotte", 1533, 10, 10,1234567890);
         // studentRepository.update(student);
         // studentRepository.create(new Student(50,"dadadada","rqrqrq", 2010, 10, 10,1234567890));
+        System.out.println(companyRepository.read(1));
         return "index";
     }
 

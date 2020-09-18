@@ -1,7 +1,10 @@
 package com.madskchristensen.webshopspringmvc.repositories;
 
+import com.madskchristensen.webshopspringmvc.models.Category;
+import com.madskchristensen.webshopspringmvc.models.Company;
 import com.madskchristensen.webshopspringmvc.models.Product;
 import com.madskchristensen.webshopspringmvc.util.DatabaseConnectionManager;
+import com.madskchristensen.webshopspringmvc.util.RepositoryManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +16,7 @@ import java.util.List;
 public class ProductRepositoryImpl implements IProductRepository {
     private Connection conn;
 
-    public ProductRepositoryImpl() throws SQLException {
+    public ProductRepositoryImpl(Connection conn) throws SQLException {
         this.conn = DatabaseConnectionManager.getInstance().getDatabaseConnection();
     }
 
@@ -52,8 +55,20 @@ public class ProductRepositoryImpl implements IProductRepository {
                 productToReturn.setName(rs.getString(2));
                 productToReturn.setPrice(rs.getDouble(3));
                 productToReturn.setDescription(rs.getString(4));
-                // productToReturn.setCompany(new Company(rs.getInt(5));
-                // productToReturn.setCategory
+
+                Company company = new Company();
+                long companyID = rs.getLong(5);
+                company.setId(RepositoryManager.getInstance().getCompanyRepository().read(companyID).getId());
+                company.setCompanyDescription(RepositoryManager.getInstance().getCompanyRepository().read(companyID).getCompanyDescription());
+
+                Category category = new Category();
+                long categoryID = rs.getLong(6);
+
+                category.setId(RepositoryManager.getInstance().getCategoryRepository().read(categoryID).getId());
+                category.setName(RepositoryManager.getInstance().getCategoryRepository().read(categoryID).getName());
+
+                productToReturn.setCompany(company);
+                productToReturn.setCategory(category);
             }
         }
         catch(SQLException s){

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class CategoryRepositoryImpl implements ICategoryRepository{
     private Connection conn;
 
-    public CategoryRepositoryImpl() throws SQLException {
+    public CategoryRepositoryImpl(Connection conn) throws SQLException {
         this.conn = DatabaseConnectionManager.getInstance().getDatabaseConnection();
     }
 

@@ -6,11 +6,14 @@ import java.util.List;
 public class Company {
     private long id;
     private String companyDescription;
-    private List<Product> list;
+    private List<Product> list = new ArrayList<>();
 
-    public Company(long id, List<Product> list, String companyDescription) {
+    public Company() {
+
+    }
+
+    public Company(long id, String companyDescription) {
         this.id = id;
-        this.list = new ArrayList<>();
         this.companyDescription = companyDescription;
     }
 

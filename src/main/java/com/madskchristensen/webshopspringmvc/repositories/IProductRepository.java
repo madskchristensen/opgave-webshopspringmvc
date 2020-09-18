@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface IProductRepository {
     // CRUD operations
-    public boolean create(Product student);
+    public boolean create(Product product);
 
     public Product read(long id);
 
     public List<Product> readAll();
 
-    public boolean update(Product student);
+    public boolean update(Product product);
 
     public boolean delete(long id);
 }
