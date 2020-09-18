@@ -18,17 +18,16 @@ public class productRepositoryImpl implements IProductRepository {
     }
 
     @Override
-    public boolean create(Product student) {
+    public boolean create(Product product) {
         try {
-            PreparedStatement createSingleStudent = conn.prepareStatement("INSERT INTO students " +
-                    "(firstname, lastname, enrollmentDate, cpr)" +
-                    "VALUES(?, ?, ?, ?)");
+            PreparedStatement createSingleProduct = conn.prepareStatement("INSERT INTO product " +
+                    "(name, price, description)" +
+                    "VALUES(?, ?, ?)");
 
-            createSingleStudent.setString(1, student.getFirstName());
-            createSingleStudent.setString(2, student.getLastName());
-            createSingleStudent.setDate(3, java.sql.Date.valueOf(student.getEnrollmentDate()));
-            createSingleStudent.setString(4, student.getCpr());
-            createSingleStudent.execute();
+            createSingleProduct.setString(1, product.getName());
+            createSingleProduct.setDouble(2, product.getPrice());
+            createSingleProduct.setString(3, product.getDescription());
+            createSingleProduct.execute();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -38,57 +37,52 @@ public class productRepositoryImpl implements IProductRepository {
     }
 
     @Override
-    public Product read(int id) {
-        Product studentToReturn = new Product();
+    public Product read(long id) {
+        Product productToReturn = new Product();
         try {
-            PreparedStatement getSingleStudent = conn.prepareStatement("SELECT * FROM students WHERE id = ?");
-            getSingleStudent.setInt(1,id);
-            ResultSet rs = getSingleStudent.executeQuery();
+            PreparedStatement getSingleProduct = conn.prepareStatement("SELECT * FROM products WHERE id = ?");
+            getSingleProduct.setLong(1,id);
+            ResultSet rs = getSingleProduct.executeQuery();
             while(rs.next()){
-                studentToReturn = new Product();
-                studentToReturn.setId(rs.getInt(1));
-                studentToReturn.setFirstName(rs.getString(2));
-                studentToReturn.setLastName(rs.getString(3));
-                studentToReturn.setEnrollmentDate(rs.getDate(4).toLocalDate());
-                studentToReturn.setCpr(rs.getString(5));
+                productToReturn = new Product();
+                productToReturn.setId(rs.getLong(1));
+                productToReturn.setName(rs.getString(2));
+                productToReturn.setPrice(rs.getDouble(3));
+
             }
         }
         catch(SQLException s){
             s.printStackTrace();
         }
-        return studentToReturn;
+        return productToReturn;
     }
 
     @Override
     public List<Product> readAll() {
-        List<Product> allStudents = new ArrayList<Product>();
+        List<Product> allProducts = new ArrayList<Product>();
         try {
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM students");
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 Product tempStudent = new Product();
-                tempStudent.setId(rs.getInt(1));
-                tempStudent.setFirstName(rs.getString(2));
-                tempStudent.setLastName(rs.getString(3));
-                tempStudent.setEnrollmentDate(rs.getDate(4).toLocalDate());
-                tempStudent.setCpr(rs.getString(5));
-                allStudents.add(tempStudent);
+                tempStudent.setId(rs.getLong(1));
+                tempStudent.setName(rs.getString(2));
+                tempStudent.setPrice(rs.getDouble(3));
+                allProducts.add(tempStudent);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return allStudents;
+        return allProducts;
     }
 
     @Override
-    public boolean update(Product student) {
+    public boolean update(Product product) {
         try{
-            PreparedStatement ps = conn.prepareStatement("UPDATE students SET firstname=?, lastname=?,enrollmentDate=?,cpr=? WHERE id=?");
-            ps.setString(1,student.getFirstName());
-            ps.setString(2,student.getLastName());
-            ps.setString(3,student.getEnrollmentDate().toString());
-            ps.setString(4,student.getCpr());
-            ps.setInt(5,student.getId());
+            PreparedStatement ps = conn.prepareStatement("UPDATE students SET name=?, price=? WHERE id=?");
+            ps.setString(1,product.getName());
+            ps.setDouble(2,product.getPrice());
+            ps.setLong(3,product.getId());
             ps.execute();
 
             return true;
@@ -100,10 +94,10 @@ public class productRepositoryImpl implements IProductRepository {
     }
 
     @Override
-    public boolean delete(int idToDelete) {
+    public boolean delete(long idToDelete) {
         try{
-            PreparedStatement ps = conn.prepareStatement("DELETE FROM students WHERE id=?");
-            ps.setInt(1,idToDelete);
+            PreparedStatement ps = conn.prepareStatement("DELETE FROM product WHERE id=?");
+            ps.setLong(1,idToDelete);
             ps.execute();
             System.out.println("Student at ID " + idToDelete + " has been deleted");
 

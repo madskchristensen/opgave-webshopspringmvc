@@ -8,11 +8,11 @@ public interface IProductRepository {
     // CRUD operations
     public boolean create(Product student);
 
-    public Product read(int id);
+    public Product read(long id);
 
     public List<Product> readAll();
 
     public boolean update(Product student);
 
-    public boolean delete(int id);
+    public boolean delete(long id);
 }
