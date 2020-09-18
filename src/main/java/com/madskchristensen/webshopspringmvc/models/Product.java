@@ -1,79 +1,67 @@
 package com.madskchristensen.webshopspringmvc.models;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDate;
-
 public class Product {
-    private int id;
-    private String firstName;
-    private String lastName;
-    @DateTimeFormat(pattern = "yyyy-MM-dd") // needed for input field on html pages (in order to serve the right format)
-    private LocalDate enrollmentDate;
-    private String cpr;
+    private long id;
+    private String name;
+    private double price;
+    private String description;
+    private Company company;
+    private Category category;
 
-    public Product(int id, String firstName, String lastName, int enrollmentYear, int enrollmentMonth, int enrollmentDay, String cpr) {
+    public Product(long id, String name, double price, String description, Company company, Category category) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.enrollmentDate = LocalDate.of(enrollmentYear, enrollmentMonth, enrollmentDay);
-        this.cpr = cpr;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.company = company;
+        this.category = category;
     }
 
-    public Product() {}
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public double getPrice() {
+        return price;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public LocalDate getEnrollmentDate() {
-        return enrollmentDate;
+    public String getDescription() {
+        return description;
     }
 
-    public void setEnrollmentDate(LocalDate enrollmentDate) {
-        this.enrollmentDate = enrollmentDate;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public void setEnrollmentDate(int enrollmentYear, int enrollmentMonth, int enrollmentDay) {
-        this.enrollmentDate = LocalDate.of(enrollmentYear, enrollmentMonth, enrollmentDay);
+    public Company getCompany() {
+        return company;
     }
 
-    public String getCpr() {
-        return cpr;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
-    public void setCpr(String cpr) {
-        this.cpr = cpr;
+    public Category getCategory() {
+        return category;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", enrollmentDate=" + enrollmentDate +
-                ", cpr='" + cpr + '\'' +
-                '}';
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
