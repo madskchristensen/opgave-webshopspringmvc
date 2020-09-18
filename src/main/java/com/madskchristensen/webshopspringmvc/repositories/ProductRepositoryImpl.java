@@ -49,31 +49,31 @@ public class ProductRepositoryImpl implements IProductRepository {
             getSingleProduct.setLong(1,id);
             ResultSet rs = getSingleProduct.executeQuery();
 
-            while(rs.next()){
-                productToReturn = new Product();
-                productToReturn.setId(rs.getLong(1));
-                productToReturn.setName(rs.getString(2));
-                productToReturn.setPrice(rs.getDouble(3));
-                productToReturn.setDescription(rs.getString(4));
+            productToReturn = new Product();
+            productToReturn.setId(rs.getLong(1));
+            productToReturn.setName(rs.getString(2));
+            productToReturn.setPrice(rs.getDouble(3));
+            productToReturn.setDescription(rs.getString(4));
 
-                Company company = new Company();
-                long companyID = rs.getLong(5);
-                company.setId(RepositoryManager.getInstance().getCompanyRepository().read(companyID).getId());
-                company.setCompanyDescription(RepositoryManager.getInstance().getCompanyRepository().read(companyID).getCompanyDescription());
+            Company company = new Company();
+            long companyID = rs.getLong(5);
+            company.setId(RepositoryManager.getInstance().getCompanyRepository().read(companyID).getId());
+            company.setCompanyDescription(RepositoryManager.getInstance().getCompanyRepository().read(companyID).getCompanyDescription());
 
-                Category category = new Category();
-                long categoryID = rs.getLong(6);
+            Category category = new Category();
+            long categoryID = rs.getLong(6);
 
-                category.setId(RepositoryManager.getInstance().getCategoryRepository().read(categoryID).getId());
-                category.setName(RepositoryManager.getInstance().getCategoryRepository().read(categoryID).getName());
+            category.setId(RepositoryManager.getInstance().getCategoryRepository().read(categoryID).getId());
+            category.setName(RepositoryManager.getInstance().getCategoryRepository().read(categoryID).getName());
 
-                productToReturn.setCompany(company);
-                productToReturn.setCategory(category);
-            }
+            productToReturn.setCompany(company);
+            productToReturn.setCategory(category);
         }
-        catch(SQLException s){
+
+        catch(SQLException s) {
             s.printStackTrace();
         }
+
         return productToReturn;
     }
 
