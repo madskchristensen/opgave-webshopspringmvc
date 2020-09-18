@@ -12,11 +12,11 @@ import java.sql.SQLException;
 @Controller
 public class WebShopController {
 
-    private IProductRepository studentRepository;
+    private IProductRepository productRepository;
 
     public WebShopController() {
         try {
-            studentRepository = new productRepositoryImpl();
+            productRepository = new productRepositoryImpl();
         } catch(SQLException e) {
             e.printStackTrace();
         }
@@ -33,11 +33,11 @@ public class WebShopController {
     //Very simple prototype of GET-request with parameter
     //https://www.baeldung.com/spring-request-param
     //TODO Direct to detailed view of student
-    @GetMapping("/student")
-    public String getStudentByParameter(@RequestParam int id, Model model) {
-        Product student = studentRepository.read(id);
-        model.addAttribute("student", student);
-        return "/student/detail";
+    @GetMapping("/product")
+    public String getProductByParameter(@RequestParam int id, Model model) {
+        Product product = productRepository.read(id);
+        model.addAttribute("product", product);
+        return "/product/detail";
     }
 
     @GetMapping("/temp")
@@ -46,57 +46,57 @@ public class WebShopController {
         return "temp";
     }
 
-    @GetMapping("/varekatalog")
-    public String studentOverview(Model model) {
-        model.addAttribute("varekatalog", studentRepository.readAll());
+    @GetMapping("/products")
+    public String productOverview(Model model) {
+        model.addAttribute("products", productRepository.readAll());
         return "products";
     }
 
-    // create student method
-    @GetMapping("/student/create")
-    public String createStudentShow(){
-        return "/student/create";
+    // create product method
+    @GetMapping("/product/create")
+    public String createProductShow(){
+        return "/product/create";
     }
 
-    @PostMapping("/student/createDo")
-    public String studentInput(@ModelAttribute Product student) {
-        studentRepository.create(student);
+    @PostMapping("/product/createDo")
+    public String productInput(@ModelAttribute Product product) {
+        productRepository.create(product);
 
-        return "redirect:/students";
+        return "redirect:/products";
     }
 
-    @GetMapping("/student/edit")
-    public String studentEditShow(@RequestParam int id, Model model) {
-        model.addAttribute("student", studentRepository.read(id));
+    @GetMapping("/product/edit")
+    public String productEditShow(@RequestParam int id, Model model) {
+        model.addAttribute("product", productRepository.read(id));
 
-        return "/student/edit";
+        return "/product/edit";
     }
 
-    @PostMapping("/student/editDo")
-    public String studentEdit(@RequestParam int id, @ModelAttribute Product student) {
-        studentRepository.update(student);
+    @PostMapping("/product/editDo")
+    public String productEdit(@RequestParam int id, @ModelAttribute Product product) {
+        productRepository.update(product);
 
-        return "redirect:/students";
+        return "redirect:/products";
     }
 
-    // delete student method
-    @GetMapping("/student/delete")
+    // delete product method
+    @GetMapping("/product/delete")
     public String delete(@RequestParam int id, Model model){
-        Product student = studentRepository.read(id);
-        model.addAttribute("student", student);
-        return "/student/delete";
+        Product product = productRepository.read(id);
+        model.addAttribute("product", product);
+        return "/product/delete";
     }
 
-    @PostMapping("/student/deleteDo")
-    public String deleteDo(@ModelAttribute Product student){
-        studentRepository.delete(student.getId());
-        return "redirect:/students";
+    @PostMapping("/product/deleteDo")
+    public String deleteDo(@ModelAttribute Product product){
+        productRepository.delete(product.getId());
+        return "redirect:/products";
     }
 
-    @PostMapping("/student/deleteNo")
-    public String deleteNo(@ModelAttribute Product student){
+    @PostMapping("/product/deleteNo")
+    public String deleteNo(@ModelAttribute Product product){
 
-        return "redirect:/students";
+        return "redirect:/products";
     }
 
     // edit student method

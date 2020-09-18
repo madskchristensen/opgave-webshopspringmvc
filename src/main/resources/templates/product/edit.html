@@ -2,22 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Student</title>
+    <title>Rediger Produkt</title>
     <!-- stylesheet -->
     <link rel="stylesheet" type="text/css" href="/../css/styles.css">
 </head>
 <body>
 <div class="container">
-    <h1>Edit Student</h1>
+    <h1>Rediger Produkt</h1>
     <header th:insert="fragments/header.html :: header"> </header>
 
     <br/>
-    <form action="/student/editDo" th:object="${student}" method="post">
-        <label for="firstName">Fornavn</label> <input id="firstName" name="firstName" th:value="*{getFirstName()}" type="text"/>
-        <label for="lastName">Efternavn</label> <input id="lastName" name="lastName" th:value="*{getLastName()}" type="text"/>
-        <label for="enrollmentDate">Indskrivelsesdato</label> <input id="enrollmentDate" name="enrollmentDate" th:value="*{getEnrollmentDate()}" type="text"/>
-        <label for="cpr">CPR</label> <input id="cpr" name="cpr" th:value="*{getCpr()}" type="text"/>
-        <input type="hidden" id="id" name="id" th:value="${student.getId()}"/>
+    <form action="/product/editDo" th:object="${product}" method="post">
+        <label for="name">Navn</label> <input id="name" name="name" th:value="*{getName()}" type="text"/>
+        <label for="price">Pris</label> <input id="price" name="price" th:value="*{getPrice()}" type="text"/>
+        <label for="description">Beskrivelse</label> <input id="description" name="description" th:value="*{getDescription()}" type="text"/>
+        <input type="hidden" id="id" name="id" th:value="${product.getId()}"/>
         <input name="submit" type="submit" value="Gem" class="btn btn-create">
     </form>
 </div>
