@@ -1,0 +1,49 @@
+body {
+    background-color: #f8f9fa;
+
+}
+
+.site-header {
+    background-color: rgba(0, 0, 0, .85);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+}
+
+.site-header a {
+    transition: ease-in-out color .15s;
+    color: #999;
+}
+
+.site-header a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.site-header span {
+    color: #999;
+}
+
+.content {
+    padding: 40px 15px 40px 15px;
+    text-align: center;
+}
+
+input {
+    text-align: center;
+}
+
+.progress {
+    height: 10px;
+}
+
+.loading-header {
+    display: inline-block;
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.breadcrumb {
+    background-color: transparent;
+    margin-bottom: 0;
+}
+
