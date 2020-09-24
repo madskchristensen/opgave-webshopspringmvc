@@ -18,12 +18,16 @@
             <th>Navn</th>
             <th>Pris</th>
             <th>Beskrivelse</th>
+            <th>Firma</th>
+            <th>Firma beskrivelse</th>
             <th>Edit</th>
         </tr>
         <tr th:each="product : ${products}">
             <td th:text="${product.getName()}"></td>
             <td th:text="${product.getPrice()}"></td>
             <td th:text="${product.getDescription()}"></td>
+            <td th:text="${product.getCompany().getName()}"></td>
+            <td th:text="${product.getCategory().getName()}"></td>
             <td>
                 <a th:href="@{/product(id=${product.id})}"><button class="btn btn-details">Details</button></a>
                 <a th:href="@{/product/edit(id=${product.id})}"><button class="btn btn-ed">Edit</button></a>
