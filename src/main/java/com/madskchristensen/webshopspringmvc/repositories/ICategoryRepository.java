@@ -2,6 +2,9 @@ package com.madskchristensen.webshopspringmvc.repositories;
 
 import com.madskchristensen.webshopspringmvc.models.Category;
 
+import java.util.List;
+
 public interface ICategoryRepository {
-        public Category read(long id);
-    }
+    Category read(long id);
+    List<Category> readAll();
+}

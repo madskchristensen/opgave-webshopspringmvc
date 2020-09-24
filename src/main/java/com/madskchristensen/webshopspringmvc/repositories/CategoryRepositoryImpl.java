@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CategoryRepositoryImpl implements ICategoryRepository{
     private Connection conn;
@@ -35,5 +37,28 @@ public class CategoryRepositoryImpl implements ICategoryRepository{
             s.printStackTrace();
         }
         return category;
+    }
+
+    public List<Category> readAll() {
+        List<Category> allCategories = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = conn.prepareStatement("SELECT *  FROM category");
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                Category category = new Category();
+
+                category.setId(rs.getLong(1));
+                category.setName(rs.getString(2));
+
+                allCategories.add(category);
+            }
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+
+        return allCategories;
     }
 }

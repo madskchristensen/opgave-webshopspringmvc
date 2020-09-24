@@ -2,6 +2,9 @@ package com.madskchristensen.webshopspringmvc.repositories;
 
 import com.madskchristensen.webshopspringmvc.models.Company;
 
+import java.util.List;
+
 public interface ICompanyRepository {
-    public Company read(long id);
+    Company read(long id);
+    List<Company> readAll();
 }

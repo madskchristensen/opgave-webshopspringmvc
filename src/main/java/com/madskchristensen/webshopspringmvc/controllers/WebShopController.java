@@ -60,7 +60,8 @@ public class WebShopController {
 
     // create product method
     @GetMapping("/product/create")
-    public String createProductShow(){
+    public String createProductShow(Model model) {
+        model.addAttribute("companies");
         return "/product/create";
     }
 
