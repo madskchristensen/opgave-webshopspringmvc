@@ -5,18 +5,41 @@
     <title>Rediger Produkt</title>
 </head>
 <body>
+<nav th:insert="fragments/fragments.html :: header"></nav>
+
 <div class="container">
     <h1>Rediger Produkt</h1>
-    <header th:insert="fragments/fragments.html :: header"> </header>
+    <div class="content" style="width: 600px; margin: 0 auto; padding-top: 0;">
+        <form action="/product/editDo" th:object="${product}" method="post" autocomplete="on">
+            <div class="form-group-row">
+                <div class="mx-auto">
+                    <label class="col-form-label font-weight-bold" for="name">Navn</label>
+                    <input class="form-control" id="name" name="name" th:value="*{getName()}" type="text"/>
+                </div>
+                <div class="mx-auto">
+                    <label class="col-form-label font-weight-bold" for="price">Pris</label>
+                    <input class="form-control" id="price" name="price" th:value="*{getPrice()}" type="text"/>
+                </div>
+                <div class="mx-auto">
+                    <label class="col-form-label font-weight-bold" for="description">Beskrivelse</label>
+                    <input class="form-control" id="description" name="description" th:value="*{getDescription()}" type="text"/>
+                </div>
+                <div class="mx-auto">
+                    <label class="col-form-label font-weight-bold" for="company">Firma</label>
+                    <input class="form-control" id="company" name="company" th:value="*{getCompany()}" type="text"/>
+                </div>
+                <div class="mx-auto">
+                    <label class="col-form-label font-weight-bold" for="category">Firma</label>
+                    <input class="form-control" id="category" name="category" th:value="*{getCategory()}" type="text"/>
+                </div>
+            </div>
 
-    <br/>
-    <form action="/product/editDo" th:object="${product}" method="post">
-        <label for="name">Navn</label> <input id="name" name="name" th:value="*{getName()}" type="text"/>
-        <label for="price">Pris</label> <input id="price" name="price" th:value="*{getPrice()}" type="text"/>
-        <label for="description">Beskrivelse</label> <input id="description" name="description" th:value="*{getDescription()}" type="text"/>
-        <input type="hidden" id="id" name="id" th:value="${product.getId()}"/>
-        <input name="submit" type="submit" value="Gem" class="btn btn-create">
-    </form>
+            <input type="hidden" id="id" name="id" th:value="${product.getId()}"/>
+            <br>
+            <input name="submit" type="submit" value="Gem" class="btn btn-success">
+        </form>
+    </div>
+
 </div>
 </body>
 </html>

@@ -11,18 +11,21 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <!-- Custom CSS -->
-<!--
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
--->
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
+
+    <!--
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    -->
 </head>
 <body>
-<div th:fragment="header" class="container">
-    <nav>
-        <a href="/">Hjem</a>
-        <a href="/products">Varekatalog</a>
-        <a href="/temp">Noget andet</a>
-    </nav>
-</div>
+<nav th:fragment="header" class="site-header sticky-top py-1">
+    <div class="container d-flex flex-column flex-md-row justify-content-between">
+        <span class="font-weight-bold py-2 d-none d-inline-block" th:text="Velkommen " th:sec:authentication="name"> bruger</span>
+        <a class="py-2 d-none d-md-inline-block" href="/">Hjem</a>
+        <a class="py-2 d-none d-md-inline-block" href="/products">Varekatalog</a>
+        <a class="py-2 d-none d-md-inline-block" href="/temp">Noget andet</a>
+    </div>
+</nav>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
