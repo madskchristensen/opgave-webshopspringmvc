@@ -93,8 +93,8 @@ public class ProductRepositoryImpl implements IProductRepository {
                 tempProduct.setName(rs.getString(2));
                 tempProduct.setPrice(rs.getDouble(3));
                 tempProduct.setDescription(rs.getString(4));
-                // tempProduct.setCompany
-                // tempProduct.setCategory
+                tempProduct.setCompany(RepositoryManager.getInstance().getCompanyRepository().read(rs.getLong(5)));
+                tempProduct.setCategory(RepositoryManager.getInstance().getCategoryRepository().read(rs.getLong(6)));
                 allProducts.add(tempProduct);
             }
         } catch (SQLException e) {
