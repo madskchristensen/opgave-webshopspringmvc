@@ -26,11 +26,11 @@
                 </div>
                 <div class="mx-auto">
                     <label class="col-form-label font-weight-bold" for="category">Firma</label>
-                    <input class="form-control" id="category" name="category" th:value="*{getCategory()}" type="text"/>
+                    <input class="form-control" id="category" name="category" th:value="*{getCategory().getName()}" type="text"/>
                 </div>
                 <div class="mx-auto">
                     <label class="col-form-label font-weight-bold" for="company">Firma</label>
-                    <input class="form-control" id="company" name="company" th:value="*{getCompany()}" type="text"/>
+                    <input class="form-control" id="company" name="company" th:value="*{getCompany().getName()}" type="text"/>
                 </div>
 
             </div>

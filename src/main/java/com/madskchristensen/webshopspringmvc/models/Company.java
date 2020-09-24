@@ -53,6 +53,11 @@ public class Company {
 
     @Override
     public String toString() {
-        return name;
+        return "Company{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", companyDescription='" + companyDescription + '\'' +
+                ", list=" + list +
+                '}';
     }
 }

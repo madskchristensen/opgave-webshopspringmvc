@@ -1,6 +1,7 @@
 package com.madskchristensen.webshopspringmvc.controllers;
 
 import com.madskchristensen.webshopspringmvc.models.Category;
+import com.madskchristensen.webshopspringmvc.models.Company;
 import com.madskchristensen.webshopspringmvc.models.Product;
 import com.madskchristensen.webshopspringmvc.repositories.*;
 import com.madskchristensen.webshopspringmvc.util.RepositoryManager;
@@ -61,12 +62,19 @@ public class WebShopController {
     // create product method
     @GetMapping("/product/create")
     public String createProductShow(Model model) {
-        model.addAttribute("companies");
+        model.addAttribute("companies", companyRepository.readAll());
+        model.addAttribute("categories", categoryRepository.readAll());
         return "/product/create";
     }
 
     @PostMapping("/product/createDo")
-    public String productInput(@ModelAttribute Product product, @ModelAttribute Category category) {
+    public String productInput(@ModelAttribute Product product, @ModelAttribute("category") Category category, @ModelAttribute("company") Company company) {
+        product.setCategory(category);
+        product.setCompany(company);
+
+        System.out.println(product);
+        System.out.println(category);
+        System.out.println(company);
         productRepository.create(product);
 
         return "redirect:/products";

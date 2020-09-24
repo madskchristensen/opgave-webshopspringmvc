@@ -15,32 +15,20 @@
         <label for="name">Varenavn</label> <input id="name" name="name" type="text"/>
         <label for="price">Pris</label> <input id="price" name="price" type="text"/>
         <label for="description">Beskrivelse</label> <input id="description" name="description" type="text"/>
-        <label for="company">Firma</label> <input id="company" name="company" type="text"/>
+        <label for="company">Firma</label>
+        <select class="form-control" id="company">
+            <option th:each="company : ${companies}" th:value="${company}" th:text="${company.getName()}"></option>
+        </select>
         <label for="category">Kategori</label>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="category" name="category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Kategori
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" th:each="category : ${categories}">
-                <a class="dropdown-item" href="#" th:text="${category.getName()}" >asdsad</a>
-            </div>
-        </div>
-
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown button
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </div>
+        <select class="form-control" id="category">
+            <option th:each="category : ${categories}" th:value="${category}" th:text="${category.getName()}"></option>
+        </select>
 
         <input name="submit" type="submit" value="Opret" class="btn btn-create">
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script th:src="@{/js/bootstrap.min.js}" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>
