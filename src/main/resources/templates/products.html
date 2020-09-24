@@ -10,10 +10,10 @@
 
     <header th:insert="fragments/fragments.html :: header"></header>
     <br/>
-    <a href="/product/create"><button class="btn btn-create w">Create</button></a>
+    <a href="/product/create"><button class="btn btn-success btn-lg">Create</button></a>
     <br/>
     <h3>Varer på lager</h3>
-    <table>
+    <table class="table table-striped table-hover table-bordered">
         <tr>
             <th>Navn</th>
             <th>Pris</th>
@@ -25,9 +25,9 @@
             <td th:text="${product.getPrice()}"></td>
             <td th:text="${product.getDescription()}"></td>
             <td>
-                <a th:href="@{/product(id=${product.id})}"><button class="btn btn-details">Details</button></a>
-                <a th:href="@{/product/edit(id=${product.id})}"><button class="btn btn-ed">Edit</button></a>
-                <a th:href="@{/product/delete(id=${product.id})}"><button class="btn btn-del">Delete</button></a></td>
+                <a th:href="@{/product(id=${product.id})}"><button class="btn btn-success">Details</button></a>
+                <a th:href="@{/product/edit(id=${product.id})}"><button class="btn btn-info">Edit</button></a>
+                <a th:href="@{/product/delete(id=${product.id})}"><button class="btn btn-danger">Delete</button></a></td>
         </tr>
     </table>
 </div>

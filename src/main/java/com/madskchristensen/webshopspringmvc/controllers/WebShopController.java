@@ -1,5 +1,6 @@
 package com.madskchristensen.webshopspringmvc.controllers;
 
+import com.madskchristensen.webshopspringmvc.models.Category;
 import com.madskchristensen.webshopspringmvc.models.Product;
 import com.madskchristensen.webshopspringmvc.repositories.*;
 import com.madskchristensen.webshopspringmvc.util.RepositoryManager;
@@ -64,7 +65,7 @@ public class WebShopController {
     }
 
     @PostMapping("/product/createDo")
-    public String productInput(@ModelAttribute Product product) {
+    public String productInput(@ModelAttribute Product product, @ModelAttribute Category category) {
         productRepository.create(product);
 
         return "redirect:/products";

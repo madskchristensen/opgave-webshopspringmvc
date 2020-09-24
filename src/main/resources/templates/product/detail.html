@@ -6,20 +6,78 @@
 </head>
 <body>
 <div class="container">
-    <h1>Produktbeskrivelse</h1>
+    <div class="content">
+        <h1>Produktbeskrivelse</h1>
     <header th:insert="fragments/fragments.html :: header"> </header>
+        <table class="table table-striped table-hover table-bordered">
+            <tr>
+                <td style="width: 20%;">
+                    ID
+                </td>
+                <td>
+                    <input id="id" name="id" style="width: 50%" th:value="${product.getId()}" type="text" readonly/>
+                </td>
+            </tr>
 
-    <br/>
-    <label for="id">ID</label> <input id="id" name="id" th:value="${product.getId()}" type="text" readonly/>
-    <label for="name">Navn</label> <input id="name" name="name" th:value="${product.getName()}" type="text" readonly/>
-    <label for="price">Pris</label> <input id="price" name="price" th:value="${product.getPrice()}" type="text" readonly/>
-    <label for="description">Beskrivelse</label> <input id="description" name="description" th:value="${product.getDescription()}" type="text" readonly/>
-    <label for="category">Kategori</label> <input id="category" name="category" th:value="${product.getCategory().getName()}" type="text" readonly/>
-    <label for="companyname">Producent</label> <input id="companyname" name="companyname" th:value="${product.getCompany().getName()}" type="text" readonly/>
-    <label for="companydescription">Beskrivelse af producent</label> <input id="companydescription" name="companydescription" th:value="${product.getCompany().getCompanyDescription()}" type="text" readonly/>
+            <tr>
+                <td style="width: 20%;">
+                    Navn
+                </td>
+                <td>
+                    <input id="name" name="name" style="width: 50%" th:value="${product.getName()}" type="text" readonly/>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width: 20%;">
+                    Pris
+                </td>
+                <td>
+                    <input id="price" name="price" style="width: 50%" th:value="${product.getPrice()}" type="text" readonly/>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width: 20%;">
+                    Beskrivelse
+                </td>
+                <td>
+                    <input id="description" name="description" style="width: 50%" th:value="${product.getDescription()}" type="text" readonly/>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width: 20%;">
+                    Kategori
+                </td>
+                <td>
+                    <input id="category" name="category" style="width: 50%" th:value="${product.getCategory().getName()}" type="text" readonly/>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width: 20%;">
+                    Producent
+                </td>
+                <td>
+                    <input id="companyname" name="companyname" style="width: 50%" th:value="${product.getCompany().getName()}" type="text" readonly/>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="width: 20%;">
+                    Beskrivelse
+                </td>
+                <td>
+                    <input id="companydescription" name="companydescription" style="width: 50%" th:value="${product.getCompany().getCompanyDescription()}" type="text" readonly/>
+                </td>
+            </tr>
+        </table>
 
 
-    <a href="/products"><button class="btn btn-create">Tilbage</button></a>
+        <a href="/products"><button class="btn btn-info">Tilbage</button></a>
+    </div>
+
 
 </div>
 </body>
