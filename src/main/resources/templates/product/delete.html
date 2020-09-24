@@ -5,14 +5,14 @@
     <title>Slet produkt</title>
 </head>
 <body>
+<nav th:insert="fragments/fragments.html :: header"></nav>
 <div class="container" >
     <h1>Slet produkt</h1>
-    <header th:insert="fragments/fragments.html :: header"> </header>
     <!--placeholder action-->
     <h2><strong>Are you sure you want to delete</strong></h2>
 
-    <button class="btn btn-lg btn-info"><span th:text="${product.getName()}">Navn</span>
-    <br>
+    <h4><span th:text="${product.getName()}">Navn</span></h4>
+
     <form th:action="@{/templates/product/deleteDo}" method="post" th:object="${product}">
         <!--Det her er lidt weird, men trods at vi har parset et objekt til siden, så gemmer thymeleaf kun de værdier, som skal bruges til ens HTML. Derfor hidden id field nedenfor-->
         <!--Se https://stackoverflow.com/questions/43286396/spring-boot-post-request-method-not-having-all-object-values for forklaring-->

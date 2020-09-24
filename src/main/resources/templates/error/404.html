@@ -5,15 +5,14 @@
     <title>ERROR</title>
 </head>
 <body>
+<nav th:insert="fragments/fragments.html :: header"></nav>
 <div class="container">
     <h1>ERROR</h1>
-
-    <header th:insert="fragments/fragments.html :: header"> </header>
 
     <h1>Oops something went wrong!</h1>
     <h2>Error code: 404</h2>
     <h3>Our engineers are on it!</h3>
-    <a href="/"><button class="btn btn-create">Home</button></a>
+    <a href="/"><button class="btn btn-success">Home</button></a>
 
 </div>
 </body>
