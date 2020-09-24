@@ -11,16 +11,16 @@
 
     <h2>Produktbeskrivelse</h2>
 
-    <form action="/product/createDo" method="post">
-        <label for="name">Varenavn</label> <input id="name" name="name" type="text"/>
-        <label for="price">Pris</label> <input id="price" name="price" type="text"/>
-        <label for="description">Beskrivelse</label> <input id="description" name="description" type="text"/>
+    <form action="/product/createDo" th:object="${product}" method="post">
+        <label for="name">Varenavn</label> <input id="name" th:field="*{name}" type="text"/>
+        <label for="price">Pris</label> <input id="price" th:field="*{price}" type="text"/>
+        <label for="description">Beskrivelse</label> <input id="description" th:field="*{description}" type="text"/>
         <label for="company">Firma</label>
-        <select class="form-control" id="company">
+        <select class="form-control" id="company" th:field="*{company}">
             <option th:each="company : ${companies}" th:value="${company}" th:text="${company.getName()}"></option>
         </select>
         <label for="category">Kategori</label>
-        <select class="form-control" id="category">
+        <select class="form-control" id="category" th:field="*{category}">
             <option th:each="category : ${categories}" th:value="${category}" th:text="${category.getName()}"></option>
         </select>
 

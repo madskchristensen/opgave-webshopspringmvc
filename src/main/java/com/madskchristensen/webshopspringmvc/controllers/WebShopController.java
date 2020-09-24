@@ -62,20 +62,18 @@ public class WebShopController {
     // create product method
     @GetMapping("/product/create")
     public String createProductShow(Model model) {
+        model.addAttribute("product", new Product());
         model.addAttribute("companies", companyRepository.readAll());
         model.addAttribute("categories", categoryRepository.readAll());
         return "/product/create";
     }
 
     @PostMapping("/product/createDo")
-    public String productInput(@ModelAttribute Product product, @ModelAttribute("category") Category category, @ModelAttribute("company") Company company) {
-        product.setCategory(category);
-        product.setCompany(company);
-
+    public String productInput(@ModelAttribute Product product, @ModelAttribute("categories") Category category, @ModelAttribute("companies") Company company) {
         System.out.println(product);
         System.out.println(category);
         System.out.println(company);
-        productRepository.create(product);
+        // productRepository.create(product);
 
         return "redirect:/products";
     }
