@@ -17,11 +17,11 @@
         <label for="description">Beskrivelse</label> <input id="description" th:field="*{description}" type="text"/>
         <label for="company">Firma</label>
         <select class="form-control" id="company" th:field="*{company}">
-            <option th:each="company : ${companies}" th:value="${company}" th:text="${company.getName()}"></option>
+            <option th:each="company : ${companies}" th:value="${company.getId()}" th:text="${company.getName()}"></option>
         </select>
         <label for="category">Kategori</label>
         <select class="form-control" id="category" th:field="*{category}">
-            <option th:each="category : ${categories}" th:value="${category}" th:text="${category.getName()}"></option>
+            <option th:each="category : ${categories}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
         </select>
 
         <input name="submit" type="submit" value="Opret" class="btn btn-create">

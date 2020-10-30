@@ -70,8 +70,8 @@ public class ProductRepositoryImpl implements IProductRepository {
             category.setId(RepositoryManager.getInstance().getCategoryRepository().read(categoryID).getId());
             category.setName(RepositoryManager.getInstance().getCategoryRepository().read(categoryID).getName());
 
-            productToReturn.setCompany(company);
-            productToReturn.setCategory(category);
+            productToReturn.setCompanyInProductUsingCompany(company);
+            productToReturn.setCategoryInProductUsingCategory(category);
         }
 
         catch(SQLException s) {
@@ -93,8 +93,8 @@ public class ProductRepositoryImpl implements IProductRepository {
                 tempProduct.setName(rs.getString(2));
                 tempProduct.setPrice(rs.getDouble(3));
                 tempProduct.setDescription(rs.getString(4));
-                tempProduct.setCompany(RepositoryManager.getInstance().getCompanyRepository().read(rs.getLong(5)));
-                tempProduct.setCategory(RepositoryManager.getInstance().getCategoryRepository().read(rs.getLong(6)));
+                tempProduct.setCompanyInProductUsingCompany(RepositoryManager.getInstance().getCompanyRepository().read(rs.getLong(5)));
+                tempProduct.setCategoryInProductUsingCategory(RepositoryManager.getInstance().getCategoryRepository().read(rs.getLong(6)));
                 allProducts.add(tempProduct);
             }
         } catch (SQLException e) {

@@ -1,5 +1,9 @@
 package com.madskchristensen.webshopspringmvc.models;
 
+import com.madskchristensen.webshopspringmvc.util.RepositoryManager;
+
+import java.sql.SQLException;
+
 public class Product {
     private long id;
     private String name;
@@ -56,15 +60,31 @@ public class Product {
         return company;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompany(Long id) {
+        try {
+            this.company = RepositoryManager.getInstance().getCompanyRepository().read(id);
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(long id) {
+        try {
+            this.category = RepositoryManager.getInstance().getCategoryRepository().read(id);
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setCompanyInProductUsingCompany(Company company) {
+        this.company = company;
+    }
+
+    public void setCategoryInProductUsingCategory(Category category) {
         this.category = category;
     }
 

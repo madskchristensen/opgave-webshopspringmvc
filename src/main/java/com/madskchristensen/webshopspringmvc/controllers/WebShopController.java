@@ -1,5 +1,6 @@
 package com.madskchristensen.webshopspringmvc.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.madskchristensen.webshopspringmvc.models.Category;
 import com.madskchristensen.webshopspringmvc.models.Company;
 import com.madskchristensen.webshopspringmvc.models.Product;
@@ -69,11 +70,9 @@ public class WebShopController {
     }
 
     @PostMapping("/product/createDo")
-    public String productInput(@ModelAttribute Product product, @ModelAttribute("categories") Category category, @ModelAttribute("companies") Company company) {
+    public String productInput(@ModelAttribute Product product) {
         System.out.println(product);
-        System.out.println(category);
-        System.out.println(company);
-        // productRepository.create(product);
+        productRepository.create(product);
 
         return "redirect:/products";
     }
