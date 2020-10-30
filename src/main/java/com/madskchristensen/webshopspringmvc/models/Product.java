@@ -4,6 +4,11 @@ import com.madskchristensen.webshopspringmvc.util.RepositoryManager;
 
 import java.sql.SQLException;
 
+
+// Setter på company og category er lidt rodet. Default setter for begge tager imod id i stedet for object da Spring smed følgende fejl:
+// "Failed to convert property value of type 'java.lang.String' to required type"
+// Virker til at Spring ikke kan tage imod en String fra frontend og konvertere til et objekt.
+// Den lidt dumme løsning er at vi bare læser id og bruger repository til at sætte company og category
 public class Product {
     private long id;
     private String name;
@@ -80,11 +85,11 @@ public class Product {
         }
     }
 
-    public void setCompanyInProductUsingCompany(Company company) {
+    public void setCompanyUsingObject(Company company) {
         this.company = company;
     }
 
-    public void setCategoryInProductUsingCategory(Category category) {
+    public void setCategoryUsingObject(Category category) {
         this.category = category;
     }
 
