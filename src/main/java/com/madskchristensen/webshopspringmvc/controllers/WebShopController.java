@@ -32,15 +32,11 @@ public class WebShopController {
 
     @GetMapping("/")
     public String index(){
-        // Student student = new Student(1,"hejehej","Lotte", 1533, 10, 10,1234567890);
-        // studentRepository.update(student);
-        // studentRepository.create(new Student(50,"dadadada","rqrqrq", 2010, 10, 10,1234567890));
         return "index";
     }
 
     //Very simple prototype of GET-request with parameter
     //https://www.baeldung.com/spring-request-param
-    //TODO Direct to detailed view of student
     @GetMapping("/product")
     public String getProductByParameter(@RequestParam int id, Model model) {
         Product product = productRepository.read(id);
@@ -85,7 +81,7 @@ public class WebShopController {
     }
 
     @PostMapping("/product/editDo")
-    public String productEdit(@RequestParam int id, @ModelAttribute Product product) {
+    public String productEdit(@ModelAttribute Product product) {
         productRepository.update(product);
 
         return "redirect:/products";

@@ -31,9 +31,9 @@ public class DatabaseConnectionManager {
         try {
             FileInputStream propertyFile = new FileInputStream("src/main/resources/application.properties");
             prop.load(propertyFile);
-            this.user = prop.getProperty("spring.datasource.username");
-            this.password = prop.getProperty("spring.datasource.password");
-            this.url = prop.getProperty("spring.datasource.url");
+            user = prop.getProperty("spring.datasource.username");
+            password = prop.getProperty("spring.datasource.password");
+            url = prop.getProperty("spring.datasource.url");
         }
         catch(FileNotFoundException e){
             System.out.println("File could not be found");

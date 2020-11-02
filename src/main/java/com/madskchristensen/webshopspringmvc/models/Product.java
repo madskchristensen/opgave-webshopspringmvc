@@ -5,7 +5,7 @@ import com.madskchristensen.webshopspringmvc.util.RepositoryManager;
 import java.sql.SQLException;
 
 
-// Setter på company og category er lidt rodet. Default setter for begge tager imod id i stedet for object da Spring smed følgende fejl:
+// Setter på company og category er lidt rodet. Default setter for begge tager imod id i stedet for object da Spring smed følgende fejl ved oprettelse af product:
 // "Failed to convert property value of type 'java.lang.String' to required type"
 // Virker til at Spring ikke kan tage imod en String fra frontend og konvertere til et objekt.
 // Den lidt dumme løsning er at vi bare læser id og bruger repository til at sætte company og category
