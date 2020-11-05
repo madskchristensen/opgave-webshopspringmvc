@@ -1,22 +1,37 @@
 package com.madskchristensen.webshopspringmvc.models;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
+import java.util.Set;
 
+@Entity
 public class Company {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String name;
-    private String companyDescription;
-    private List<Product> list = new ArrayList<>();
+    //private List<Product> list = new ArrayList<>();
+
+    @OneToMany (mappedBy = "company")
+    private Set<Product> products;
 
     public Company() {
 
     }
 
-    public Company(long id, String name, String companyDescription) {
+    public Company(long id, String name) {
         this.id = id;
         this.name = name;
-        this.companyDescription = companyDescription;
+    }
+
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
     public String getName() {
@@ -35,29 +50,20 @@ public class Company {
         this.id = id;
     }
 
-    public List<Product> getList() {
+/*    public List<Product> getList() {
         return list;
     }
 
     public void setList(List<Product> list) {
         this.list = list;
-    }
-
-    public String getCompanyDescription() {
-        return companyDescription;
-    }
-
-    public void setCompanyDescription(String companyDescription) {
-        this.companyDescription = companyDescription;
-    }
+    }*/
 
     @Override
     public String toString() {
         return "Company{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", companyDescription='" + companyDescription + '\'' +
-                ", list=" + list +
+                ", list=" + products +
                 '}';
     }
 }

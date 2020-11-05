@@ -25,22 +25,19 @@
                     <input class="form-control" id="description" name="description" th:value="*{getDescription()}" type="text"/>
                 </div>
                 <div class="mx-auto">
-                    <label class="col-form-label font-weight-bold" for="category">Firma</label>
+                    <label class="col-form-label font-weight-bold" for="category">Kategori</label>
                     <input class="form-control" id="category" name="category" th:value="*{getCategory().getName()}" type="text"/>
                 </div>
                 <div class="mx-auto">
                     <label class="col-form-label font-weight-bold" for="company">Firma</label>
                     <input class="form-control" id="company" name="company" th:value="*{getCompany().getName()}" type="text"/>
                 </div>
-
+                <input type="hidden" id="id" name="id" th:value="${product.getId()}"/>
+                <br>
+                <input name="submit" type="submit" value="Gem" class="btn btn-success">
             </div>
-
-            <input type="hidden" id="id" name="id" th:value="${product.getId()}"/>
-            <br>
-            <input name="submit" type="submit" value="Gem" class="btn btn-success">
         </form>
     </div>
-
 </div>
 </body>
 </html>

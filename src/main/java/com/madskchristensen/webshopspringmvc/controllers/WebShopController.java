@@ -1,45 +1,39 @@
 package com.madskchristensen.webshopspringmvc.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.madskchristensen.webshopspringmvc.models.Category;
 import com.madskchristensen.webshopspringmvc.models.Company;
 import com.madskchristensen.webshopspringmvc.models.Product;
-import com.madskchristensen.webshopspringmvc.repositories.*;
-import com.madskchristensen.webshopspringmvc.util.RepositoryManager;
+import com.madskchristensen.webshopspringmvc.repositories.CategoryRepository;
+import com.madskchristensen.webshopspringmvc.repositories.CompanyRepository;
+import com.madskchristensen.webshopspringmvc.repositories.ProductRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.sql.SQLException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WebShopController {
-
-    private IProductRepository productRepository;
-    private ICompanyRepository companyRepository;
-    private ICategoryRepository categoryRepository;
-
-    public WebShopController() {
-        try {
-            productRepository = RepositoryManager.getInstance().getProductRepository();
-            companyRepository = RepositoryManager.getInstance().getCompanyRepository();
-            categoryRepository = RepositoryManager.getInstance().getCategoryRepository();
-
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    ProductRepository productRepository;
+    CategoryRepository categoryRepository;
+    CompanyRepository companyRepository;
 
     @GetMapping("/")
     public String index(){
+        // Student student = new Student(1,"hejehej","Lotte", 1533, 10, 10,1234567890);
+        // studentRepository.update(student);
+        // studentRepository.create(new Student(50,"dadadada","rqrqrq", 2010, 10, 10,1234567890));
         return "index";
     }
 
     //Very simple prototype of GET-request with parameter
     //https://www.baeldung.com/spring-request-param
+    //TODO Direct to detailed view of student
     @GetMapping("/product")
-    public String getProductByParameter(@RequestParam int id, Model model) {
-        Product product = productRepository.read(id);
+    public String getProductByParameter(@RequestParam long id, Model model) {
+        Product product = productRepository.findById(id).get();
+
         model.addAttribute("product", product);
         return "/product/detail";
     }
@@ -52,7 +46,7 @@ public class WebShopController {
 
     @GetMapping("/products")
     public String productOverview(Model model) {
-        model.addAttribute("products", productRepository.readAll());
+        model.addAttribute("products", productRepository.findAll());
         return "products";
     }
 
@@ -60,44 +54,46 @@ public class WebShopController {
     @GetMapping("/product/create")
     public String createProductShow(Model model) {
         model.addAttribute("product", new Product());
-        model.addAttribute("companies", companyRepository.readAll());
-        model.addAttribute("categories", categoryRepository.readAll());
+        model.addAttribute("companies", companyRepository.findAll());
+        model.addAttribute("categories", categoryRepository.findAll());
         return "/product/create";
     }
 
     @PostMapping("/product/createDo")
-    public String productInput(@ModelAttribute Product product) {
+    public String productInput(@ModelAttribute Product product, @ModelAttribute("categories") Category category, @ModelAttribute("companies") Company company) {
         System.out.println(product);
-        productRepository.create(product);
+        System.out.println(category);
+        System.out.println(company);
+        // productRepository.create(product);
 
         return "redirect:/products";
     }
 
     @GetMapping("/product/edit")
-    public String productEditShow(@RequestParam int id, Model model) {
-        model.addAttribute("product", productRepository.read(id));
+    public String productEditShow(@RequestParam long id, Model model) {
+        model.addAttribute("product", productRepository.findById(id).get());
 
         return "/product/edit";
     }
 
     @PostMapping("/product/editDo")
-    public String productEdit(@ModelAttribute Product product) {
-        productRepository.update(product);
+    public String productEdit(@RequestParam long id, @ModelAttribute Product product) {
+        productRepository.save(product);
 
         return "redirect:/products";
     }
 
     // delete product method
     @GetMapping("/product/delete")
-    public String delete(@RequestParam int id, Model model){
-        Product product = productRepository.read(id);
+    public String delete(@RequestParam long id, Model model){
+        Product product = productRepository.findById(id).get();
         model.addAttribute("product", product);
         return "/product/delete";
     }
 
     @PostMapping("/product/deleteDo")
     public String deleteDo(@ModelAttribute Product product){
-        productRepository.delete(product.getId());
+        productRepository.delete(product);
         return "redirect:/products";
     }
 

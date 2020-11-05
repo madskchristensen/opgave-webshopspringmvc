@@ -1,32 +1,53 @@
 package com.madskchristensen.webshopspringmvc.models;
 
-import com.madskchristensen.webshopspringmvc.util.RepositoryManager;
-
-import java.sql.SQLException;
+import javax.persistence.*;
+import java.util.Set;
 
 
 // Setter på company og category er lidt rodet. Default setter for begge tager imod id i stedet for object da Spring smed følgende fejl ved oprettelse af product:
 // "Failed to convert property value of type 'java.lang.String' to required type"
 // Virker til at Spring ikke kan tage imod en String fra frontend og konvertere til et objekt.
 // Den lidt dumme løsning er at vi bare læser id og bruger repository til at sætte company og category
+@Entity
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private double price;
     private String description;
-    private Company company;
-    private Category category;
 
-    public Product(long id, String name, double price, String description, Company company, Category category) {
+    @ManyToOne
+    private Company company;
+
+    @ManyToMany (mappedBy = "products")
+    private Set<Category> categories;
+
+    @OneToOne
+    private CompanyDescription companyDescription;
+
+    public Product(long id, String name, double price, String description, Company company,  Set<Category> categories) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.description = description;
         this.company = company;
-        this.category = category;
+        this.categories = categories;
     }
 
     public Product() {
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 
     public long getId() {
@@ -65,33 +86,6 @@ public class Product {
         return company;
     }
 
-    public void setCompany(Long id) {
-        try {
-            this.company = RepositoryManager.getInstance().getCompanyRepository().read(id);
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(long id) {
-        try {
-            this.category = RepositoryManager.getInstance().getCategoryRepository().read(id);
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setCompanyUsingObject(Company company) {
-        this.company = company;
-    }
-
-    public void setCategoryUsingObject(Category category) {
-        this.category = category;
-    }
 
     @Override
     public String toString() {
@@ -101,7 +95,7 @@ public class Product {
                 ", price=" + price +
                 ", description='" + description + '\'' +
                 ", company=" + company +
-                ", category=" + category +
+                ", category=" + categories +
                 '}';
     }
 }
