@@ -23,7 +23,11 @@
             <td th:text="${product.getPrice()}"></td>
             <td th:text="${product.getDescription()}"></td>
             <td th:text="${product.getCompany().getName()}"></td>
-            <td th:text="${product.getCategories()}"></td>
+            <td>
+                <ul>
+                    <li th:each="category : ${product.getCategories()}" th:text="${category.getName()}"></li>
+                </ul>
+            </td>
             <td>
                 <a th:href="@{/product(id=${product.id})}"><button class="btn btn-success">Details</button></a>
                 <a th:href="@{/product/edit(id=${product.id})}"><button class="btn btn-info">Edit</button></a>

@@ -45,12 +45,12 @@
                 </td>
             </tr>
 
-            <tr>
+            <tr th:each="category : ${product.getCategories()}">
                 <td style="width: 20%;">
                     Kategori
                 </td>
                 <td>
-                    <input id="category" name="category" style="width: 50%" th:value="${product.getCategory().getName()}" type="text" readonly/>
+                    <input id="category" name="category" style="width: 50%" th:value="${category.getName()}" type="text" readonly/>
                 </td>
             </tr>
 
@@ -68,7 +68,7 @@
                     Beskrivelse
                 </td>
                 <td>
-                    <input id="companydescription" name="companydescription" style="width: 50%" th:value="${product.getCompany().getCompanyDescription()}" type="text" readonly/>
+                    <input id="companydescription" name="companydescription" style="width: 50%" value="TODO: Firma beskrivelse af produkt" type="text" readonly/>
                 </td>
             </tr>
         </table>
