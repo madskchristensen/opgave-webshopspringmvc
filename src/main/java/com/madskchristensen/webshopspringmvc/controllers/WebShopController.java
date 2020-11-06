@@ -78,7 +78,7 @@ public class WebShopController {
         System.out.println(checkboxValue);
         System.out.println(checkboxValue5);
         // System.out.println(product);
-        
+
         Set<Category> categorySet = new HashSet<>();
         Set<Product> productSet = new HashSet<>();
         categorySet.add(categoryService.findById(Long.parseLong(checkboxValue)));
