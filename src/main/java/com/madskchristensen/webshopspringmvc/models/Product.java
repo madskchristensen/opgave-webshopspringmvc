@@ -23,8 +23,8 @@ public class Product {
     @ManyToMany (mappedBy = "products")
     private Set<Category> categories;
 
-    @OneToOne
-    private CompanyDescription companyDescription;
+    @OneToOne (mappedBy = "product")
+    private CompanyDescription companydescription;
 
     public Product(long id, String name, double price, String description, Company company,  Set<Category> categories) {
         this.id = id;

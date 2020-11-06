@@ -6,6 +6,7 @@ import com.madskchristensen.webshopspringmvc.models.Product;
 import com.madskchristensen.webshopspringmvc.repositories.CategoryRepository;
 import com.madskchristensen.webshopspringmvc.repositories.CompanyRepository;
 import com.madskchristensen.webshopspringmvc.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +14,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class WebShopController {
+
+    @Autowired
     ProductRepository productRepository;
     CategoryRepository categoryRepository;
     CompanyRepository companyRepository;
@@ -46,7 +52,9 @@ public class WebShopController {
 
     @GetMapping("/products")
     public String productOverview(Model model) {
-        model.addAttribute("products", productRepository.findAll());
+        List<Product> list = new ArrayList<>();
+        productRepository.findAll().forEach(list::add);
+        model.addAttribute("products", list);
         return "products";
     }
 
