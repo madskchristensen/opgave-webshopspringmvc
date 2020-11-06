@@ -6,6 +6,9 @@ import com.madskchristensen.webshopspringmvc.models.Product;
 import com.madskchristensen.webshopspringmvc.repositories.CategoryRepository;
 import com.madskchristensen.webshopspringmvc.repositories.CompanyRepository;
 import com.madskchristensen.webshopspringmvc.repositories.ProductRepository;
+import com.madskchristensen.webshopspringmvc.service.CategoryService;
+import com.madskchristensen.webshopspringmvc.service.CompanyService;
+import com.madskchristensen.webshopspringmvc.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,14 +19,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class WebShopController {
 
-    @Autowired
-    ProductRepository productRepository;
-    CategoryRepository categoryRepository;
-    CompanyRepository companyRepository;
+    ProductService productService;
+    CategoryService categoryService;
+    CompanyService companyService;
+
+    public WebShopController(ProductService productService, CategoryService categoryService, CompanyService companyService){
+        this.productService = productService;
+        this.categoryService = categoryService;
+        this.companyService = companyService;
+    }
 
     @GetMapping("/")
     public String index(){
@@ -38,8 +47,7 @@ public class WebShopController {
     //TODO Direct to detailed view of student
     @GetMapping("/product")
     public String getProductByParameter(@RequestParam long id, Model model) {
-        Product product = productRepository.findById(id).get();
-
+        Product product = productService.findById(id);
         model.addAttribute("product", product);
         return "/product/detail";
     }
@@ -52,8 +60,7 @@ public class WebShopController {
 
     @GetMapping("/products")
     public String productOverview(Model model) {
-        List<Product> list = new ArrayList<>();
-        productRepository.findAll().forEach(list::add);
+        List<Product> list = productService.findAll();
         model.addAttribute("products", list);
         return "products";
     }
@@ -62,8 +69,8 @@ public class WebShopController {
     @GetMapping("/product/create")
     public String createProductShow(Model model) {
         model.addAttribute("product", new Product());
-        model.addAttribute("companies", companyRepository.findAll());
-        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("companies", companyService.findAll());
+        model.addAttribute("categories", categoryService.findAll());
         return "/product/create";
     }
 
@@ -79,14 +86,14 @@ public class WebShopController {
 
     @GetMapping("/product/edit")
     public String productEditShow(@RequestParam long id, Model model) {
-        model.addAttribute("product", productRepository.findById(id).get());
+        model.addAttribute("product", productService.findById(id));
 
         return "/product/edit";
     }
 
     @PostMapping("/product/editDo")
     public String productEdit(@RequestParam long id, @ModelAttribute Product product) {
-        productRepository.save(product);
+        productService.update(product);
 
         return "redirect:/products";
     }
@@ -94,14 +101,14 @@ public class WebShopController {
     // delete product method
     @GetMapping("/product/delete")
     public String delete(@RequestParam long id, Model model){
-        Product product = productRepository.findById(id).get();
+        Product product = productService.findById(id);
         model.addAttribute("product", product);
         return "/product/delete";
     }
 
     @PostMapping("/product/deleteDo")
     public String deleteDo(@ModelAttribute Product product){
-        productRepository.delete(product);
+        productService.delete(product.getId());
         return "redirect:/products";
     }
 
