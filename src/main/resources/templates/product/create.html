@@ -12,19 +12,23 @@
     <h2>Produktbeskrivelse</h2>
 
     <form action="/product/createDo" th:object="${product}" method="post">
+
         <label for="name">Varenavn</label> <input id="name" th:field="*{name}" type="text"/>
         <label for="price">Pris</label> <input id="price" th:field="*{price}" type="text"/>
         <label for="description">Beskrivelse</label> <input id="description" th:field="*{description}" type="text"/>
         <label for="company">Firma</label>
+
         <select class="form-control" id="company" th:field="*{company}">
             <option th:each="company : ${companies}" th:value="${company.getId()}" th:text="${company.getName()}"></option>
         </select>
+
         <label for="category">Kategori</label>
         <select class="form-control" id="category" th:field="*{category}">
             <option th:each="category : ${categories}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
         </select>
 
         <input name="submit" type="submit" value="Opret" class="btn btn-create">
+
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

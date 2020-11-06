@@ -75,10 +75,8 @@ public class WebShopController {
     }
 
     @PostMapping("/product/createDo")
-    public String productInput(@ModelAttribute Product product, @ModelAttribute("categories") Category category, @ModelAttribute("companies") Company company) {
+    public String productInput(Product product) {
         System.out.println(product);
-        System.out.println(category);
-        System.out.println(company);
         // productRepository.create(product);
 
         return "redirect:/products";
