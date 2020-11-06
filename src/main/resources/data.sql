@@ -45,8 +45,13 @@ INSERT INTO category (name) VALUES
 ('Andet');
 
 INSERT INTO category_products (categories_id,products_id) VALUES (1,1);
+INSERT INTO category_products (categories_id,products_id) VALUES (3,1);
+INSERT INTO category_products (categories_id,products_id) VALUES (4,1);
 INSERT INTO category_products (categories_id,products_id) VALUES (1,2);
+INSERT INTO category_products (categories_id,products_id) VALUES (4,2);
+INSERT INTO category_products (categories_id,products_id) VALUES (5,2);
 INSERT INTO category_products (categories_id,products_id) VALUES (2,3);
 INSERT INTO category_products (categories_id,products_id) VALUES (2,4);
 INSERT INTO category_products (categories_id,products_id) VALUES (2,5);
+INSERT INTO category_products (categories_id,products_id) VALUES (4,5);
 INSERT INTO category_products (categories_id,products_id) VALUES (1,6);
