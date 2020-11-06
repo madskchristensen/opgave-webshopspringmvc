@@ -63,7 +63,7 @@ public class Company {
         return "Company{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", list=" + products +
+                ", products=" + products +
                 '}';
     }
 }

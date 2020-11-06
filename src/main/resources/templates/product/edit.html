@@ -24,9 +24,11 @@
                     <label class="col-form-label font-weight-bold" for="description">Beskrivelse</label>
                     <input class="form-control" id="description" name="description" th:value="*{getDescription()}" type="text"/>
                 </div>
+
+                <!-- todo: gemme kategori - hvordan? -->
                 <div class="mx-auto">
                     <label class="col-form-label font-weight-bold" for="category">Kategori</label>
-                    <input class="form-control" id="category" name="category" th:value="*{getCategory().getName()}" type="text"/>
+                    <input th:each="category : ${product.getCategories()}" class="form-control" id="category" name="category" th:value="${category.getName()}" type="text"/>
                 </div>
                 <div class="mx-auto">
                     <label class="col-form-label font-weight-bold" for="company">Firma</label>

@@ -11,64 +11,64 @@
         <table class="table table-striped table-hover table-bordered">
             <tr>
                 <td style="width: 20%;">
-                    ID
+                    <strong><span>ID</span></strong>
                 </td>
                 <td>
-                    <input id="id" name="id" style="width: 50%" th:value="${product.getId()}" type="text" readonly/>
+                    <input id="id" name="id" style="width: 50%" th:value="${product.getId()}" type="text" class="form-control-plaintext" readonly/>
                 </td>
             </tr>
 
             <tr>
                 <td style="width: 20%;">
-                    Navn
+                    <strong><span>Navn</span></strong>
                 </td>
                 <td>
-                    <input id="name" name="name" style="width: 50%" th:value="${product.getName()}" type="text" readonly/>
+                    <input id="name" name="name" style="width: 50%" th:value="${product.getName()}" class="form-control-plaintext"  type="text" readonly/>
                 </td>
             </tr>
 
             <tr>
                 <td style="width: 20%;">
-                    Pris
+                    <strong><span>Pris</span></strong>
                 </td>
                 <td>
-                    <input id="price" name="price" style="width: 50%" th:value="${product.getPrice()}" type="text" readonly/>
+                    <input id="price" name="price" style="width: 50%" th:value="${product.getPrice()}" class="form-control-plaintext"  type="text" readonly/>
                 </td>
             </tr>
 
             <tr>
                 <td style="width: 20%;">
-                    Beskrivelse
+                    <strong><span>Beskrivelse</span></strong>
                 </td>
                 <td>
-                    <input id="description" name="description" style="width: 50%" th:value="${product.getDescription()}" type="text" readonly/>
+                    <input id="description" name="description" style="width: 50%" th:value="${product.getDescription()}" class="form-control-plaintext"  type="text" readonly/>
                 </td>
             </tr>
 
             <tr th:each="category : ${product.getCategories()}">
                 <td style="width: 20%;">
-                    Kategori
+                    <strong><span>Kategori</span></strong>
                 </td>
                 <td>
-                    <input id="category" name="category" style="width: 50%" th:value="${category.getName()}" type="text" readonly/>
+                    <input id="category" name="category" style="width: 50%" th:value="${category.getName()}" class="form-control-plaintext"  type="text" readonly/>
                 </td>
             </tr>
 
             <tr>
                 <td style="width: 20%;">
-                    Producent
+                    <strong><span>Producent</span></strong>
                 </td>
                 <td>
-                    <input id="companyname" name="companyname" style="width: 50%" th:value="${product.getCompany().getName()}" type="text" readonly/>
+                    <input id="companyname" name="companyname" style="width: 50%" th:value="${product.getCompany().getName()}" class="form-control-plaintext"  type="text" readonly/>
                 </td>
             </tr>
 
             <tr>
                 <td style="width: 20%;">
-                    Beskrivelse
+                    <strong><span>Beskrivelse</span></strong>
                 </td>
                 <td>
-                    <input id="companydescription" name="companydescription" style="width: 50%" value="TODO: Firma beskrivelse af produkt" type="text" readonly/>
+                    <input id="companydescription" name="companydescription" style="width: 50%" value="TODO: Firma beskrivelse af produkt" class="form-control-plaintext"  type="text" readonly/>
                 </td>
             </tr>
         </table>

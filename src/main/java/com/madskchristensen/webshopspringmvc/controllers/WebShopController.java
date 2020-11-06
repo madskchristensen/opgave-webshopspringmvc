@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class WebShopController {
@@ -75,9 +73,19 @@ public class WebShopController {
     }
 
     @PostMapping("/product/createDo")
-    public String productInput(Product product) {
-        System.out.println(product);
-        // productRepository.create(product);
+    public String productInput(@ModelAttribute Product product, @RequestParam(value = "checkbox1", required = false) String checkboxValue, @RequestParam(value = "checkbox5", required = false) String checkboxValue5) {
+
+        System.out.println(checkboxValue);
+        System.out.println(checkboxValue5);
+        // System.out.println(product);
+        
+        Set<Category> categorySet = new HashSet<>();
+        Set<Product> productSet = new HashSet<>();
+        categorySet.add(categoryService.findById(Long.parseLong(checkboxValue)));
+        categorySet.add(categoryService.findById(Long.parseLong(checkboxValue5)));
+
+        product.setCategories(categorySet);
+        productService.create(product);
 
         return "redirect:/products";
     }

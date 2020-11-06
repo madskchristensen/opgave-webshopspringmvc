@@ -16,6 +16,7 @@
             <th>Beskrivelse</th>
             <th>Firma</th>
             <th>Firma beskrivelse</th>
+            <th>Kategori</th>
             <th>Edit</th>
         </tr>
         <tr th:each="product : ${products}">
@@ -23,6 +24,7 @@
             <td th:text="${product.getPrice()}"></td>
             <td th:text="${product.getDescription()}"></td>
             <td th:text="${product.getCompany().getName()}"></td>
+            <td>Tom for nu</td>
             <td>
                 <ul>
                     <li th:each="category : ${product.getCategories()}" th:text="${category.getName()}"></li>

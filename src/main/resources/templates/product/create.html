@@ -5,31 +5,68 @@
     <title>Opret produkt</title>
 </head>
 <body>
-<div class="container">
-    <h1>Opret nyt produkt</h1>
     <header th:insert="fragments/fragments.html :: header"> </header>
+    <div class="container">
+    <h1>Opret nyt produkt</h1>
+    <div style="margin-top: 2%">
+    <h3>Produktbeskrivelse</h3>
 
-    <h2>Produktbeskrivelse</h2>
+    <form action="/product/createDo" th:object="${product}" th:name="product" method="post">
+        <div class="form-group row py-sm-3 mb-0">
+            <label class="col-sm-2 col-form-label" for="name">Varenavn</label>
+            <div class="col-sm-10 col-md-3">
+                <input class="form-control" id="name" th:field="*{name}" type="text"/>
+            </div>
+        </div>
 
-    <form action="/product/createDo" th:object="${product}" method="post">
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="price">Pris</label>
+            <div class="col-sm-10 col-md-3">
+                <input class="form-control mb-sm-3" id="price" th:field="*{price}" type="text"/>
+            </div>
+        </div>
 
-        <label for="name">Varenavn</label> <input id="name" th:field="*{name}" type="text"/>
-        <label for="price">Pris</label> <input id="price" th:field="*{price}" type="text"/>
-        <label for="description">Beskrivelse</label> <input id="description" th:field="*{description}" type="text"/>
-        <label for="company">Firma</label>
+        <div class="form-group row pb-3">
+            <label class="col-sm-2 col-form-label" for="description">Beskrivelse</label>
+            <div class="col-sm-10 col-md-3">
+                <input class="form-control mb-sm-3" id="description" th:field="*{description}" type="text"/>
+            </div>
+        </div>
 
-        <select class="form-control" id="company" th:field="*{company}">
-            <option th:each="company : ${companies}" th:value="${company.getId()}" th:text="${company.getName()}"></option>
-        </select>
+        <div class="form-group row pb-3">
+            <div class="col-xs-3">
+                <label for="company">Firma</label>
+                <select class="form-control" id="company" th:field="*{company}">
+                    <option th:each="company : ${companies}" th:value="${company.getId()}" th:text="${company.getName()}"></option>
+                </select>
+            </div>
+        </div>
 
+        <div class="form-group">
+            <label>Kategori</label>
+            <ul style="margin: 0; padding: 0">
+                <li style="list-style-type: none;" th:each="category : ${categories}">
+                    <input type="checkbox" th:name="'checkbox' + ${category.getId()}" th:id="'checkbox' + ${category.getId()}" th:value="${category.getId()}">
+                    <label th:for="'checkbox' + ${category.getId()}" th:text="${category.getName()}"></label>
+                </li>
+            </ul>
+        </div>
+
+        <!--
+        Gammel løsning som virkede med 1 kategori.
+        Kan bruges til at gøre valg af kategori pænere..
+        Evt. bruge javascript/jquery til at lave en + knap under den sidste dropdown
+        Tryk på + vil tilføje en ny dropdown hvor der kan vælges en ny kategori
         <label for="category">Kategori</label>
-        <select class="form-control" id="category" th:field="*{category}">
+        <select class="form-control" id="category" th:field="*{categories}">
             <option th:each="category : ${categories}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
         </select>
+        -->
 
-        <input name="submit" type="submit" value="Opret" class="btn btn-create">
+        <input class="btn btn-create" name="submit" type="submit" value="Opret">
 
     </form>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
